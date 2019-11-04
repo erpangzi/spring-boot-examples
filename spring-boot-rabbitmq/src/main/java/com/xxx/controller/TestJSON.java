@@ -4,19 +4,20 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.List;
 
 public class TestJSON {
 
-    public static void main(String[] args) {
-
+    public  static  void main(String[] args) {
+        System.out.println();
     }
-
+    
+    
     //java对象转json字符串
     @Test
-    public static void beanTojson() {
+    public  void beanTojson() {
         Data data = new Data();
         data.setAction("add");
         data.setId("1");
@@ -25,6 +26,7 @@ public class TestJSON {
         data.setParent("0");
         data.setSuborderNo("58961");
 
+
         String s = JSON.toJSONString(data);
         System.out.println("toJsonString()方法：s=" + s);
         //输出结果{"action":"add","id":"1","ordinal":8,"organUnitFullName":"testJSON","parent":"0","suborderNo":"58961"}
@@ -32,7 +34,7 @@ public class TestJSON {
 
     //json字符串转json对象
     @Test
-    public static void jsonToJsonBean() {
+    public  void jsonToJsonBean() {
         String s ="{\"action\":\"add\",\"id\":\"1\",\"ordinal\":8,\"organUnitFullName\":\"testJSON\",\"parent\":\"0\",\"suborderNo\":\"58961\"}";
 
         JSONObject jsonObject = JSON.parseObject(s);
@@ -48,7 +50,7 @@ public class TestJSON {
 
     //复杂JSON格式字符串与JSONObject之间的转换
     @Test
-    public static void jsonToBean() {
+    public  void jsonToBean() {
         String str ="{\"meta\":{\"code\":\"0\",\"message\":\"同步成功!\"},\"data\":{\"orderno\":\"U_2018062790915774\",\"suborderno\":\"SUB_2018062797348039\",\"type\":\"organunit\",\"result\":{\"organunit\":{\"totalCount\":2,\"successCount\":0,\"failCount\":2,\"errors\":[{\"code\":\"UUM70004\",\"message\":\"组织单元名称不能为空\",\"data\":{\"id\":\"254\",\"suborderNo\":\"SUB_2018062797348039\",\"organUnitType\":\"部门\",\"action\":\"add\",\"parent\":\"10000\",\"ordinal\":0,\"organUnitFullName\":\"组织单元全称\"},\"success\":false},{\"code\":\"UUM70004\",\"message\":\"组织单元名称不能为空\",\"data\":{\"id\":\"255\",\"suborderNo\":\"SUB_2018062797348039\",\"organUnitType\":\"部门\",\"action\":\"add\",\"parent\":\"10000\",\"ordinal\":0,\"organUnitFullName\":\"组织单元全称\"},\"success\":false}]},\"role\":{\"totalCount\":0,\"successCount\":0,\"failCount\":0,\"errors\":[]},\"user\":{\"totalCount\":0,\"successCount\":0,\"failCount\":0,\"errors\":[]}}}}";
         JSONObject jsonObject = JSON.parseObject(str);
         JSONObject data = jsonObject.getJSONObject("data");
@@ -67,7 +69,7 @@ public class TestJSON {
 
     //json字符串转java简单对象
     @Test
-    public static void jsonStrToJavaBean() {
+    public  void jsonStrToJavaBean() {
         String s ="{\"action\":\"add\",\"id\":\"1\",\"ordinal\":8,\"organUnitFullName\":\"testJSON\",\"parent\":\"0\",\"suborderNo\":\"58961\"}";
         Data data = JSON.parseObject(s, Data.class);
         System.out.println("data对象"+data.toString());
@@ -85,9 +87,10 @@ public class TestJSON {
         //另一种方式获取=add---id=1
     }
 
-    @Test
+     
     //json字符串--数组型与JSONArray对象之间的转换
-    public static void jsonStrToJSONArray() {
+    @Test
+    public  void jsonStrToJSONArray() {
         String str = "{\"errors\":[{\"code\":\"UUM70004\",\"message\":\"组织单元名称不能为空\",\"data\":{\"id\":\"254\",\"suborderNo\":\"SUB_2018062797348039\",\"organUnitType\":\"部门\",\"action\":\"add\",\"parent\":\"10000\",\"ordinal\":0,\"organUnitFullName\":\"组织单元全称\"},\"success\":false},{\"code\":\"UUM70004\",\"message\":\"组织单元名称不能为空\",\"data\":{\"id\":\"255\",\"suborderNo\":\"SUB_2018062797348039\",\"organUnitType\":\"部门\",\"action\":\"add\",\"parent\":\"10000\",\"ordinal\":0,\"organUnitFullName\":\"组织单元全称\"},\"success\":false}]}";
         JSONObject jsonObject = JSON.parseObject(str);
         JSONArray error = jsonObject.getJSONArray("errors");
@@ -164,7 +167,7 @@ public class TestJSON {
 
     @Test
     //javabean转json对象
-    public static void jsonBenToJsonObject() {
+    public  void jsonBenToJsonObject() {
         Data data = new Data();
         data.setAction("add");
         data.setId("1");
