@@ -1,11 +1,16 @@
 package com.neo.rabbit.hello;
 
+
+
 import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageProperties;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Component
 public class HelloSender {
@@ -17,6 +22,16 @@ public class HelloSender {
 		String context = "hello " + new Date();
 		System.out.println("Sender : " + context);
 		this.rabbitTemplate.convertAndSend("hello", context);
+
+	}
+
+	public void send01(){
+		Message message = new Message("hello".getBytes(),new MessageProperties());
+		// 发送消息到默认的交换器，默认的路由键
+		rabbitTemplate.send(message);
+		// 发送消息到指定的交换器，指定的路由键
+		rabbitTemplate.send("direct.exchange","key.1",message);
+
 	}
 
 }
