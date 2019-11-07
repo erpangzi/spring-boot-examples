@@ -26,7 +26,8 @@ public class TestJSON {
         data.setParent("0");
         data.setSuborderNo("58961");
 
-
+        String s1 = JSONObject.toJSONString(data);
+        System.out.println("toJsonString()方法：s1=" + s1);
         String s = JSON.toJSONString(data);
         System.out.println("toJsonString()方法：s=" + s);
         //输出结果{"action":"add","id":"1","ordinal":8,"organUnitFullName":"testJSON","parent":"0","suborderNo":"58961"}
@@ -64,6 +65,7 @@ public class TestJSON {
         JSONArray errors2 = organunit.getJSONArray("errors");
         System.out.println("errors2:"+errors2);
         List<Error> error = JSON.parseObject(errors2.toJSONString(), new TypeReference<List<Error>>() {});
+        error.stream().forEach(System.out::println);
     }
 
 
@@ -91,9 +93,12 @@ public class TestJSON {
     //json字符串--数组型与JSONArray对象之间的转换
     @Test
     public  void jsonStrToJSONArray() {
-        String str = "{\"errors\":[{\"code\":\"UUM70004\",\"message\":\"组织单元名称不能为空\",\"data\":{\"id\":\"254\",\"suborderNo\":\"SUB_2018062797348039\",\"organUnitType\":\"部门\",\"action\":\"add\",\"parent\":\"10000\",\"ordinal\":0,\"organUnitFullName\":\"组织单元全称\"},\"success\":false},{\"code\":\"UUM70004\",\"message\":\"组织单元名称不能为空\",\"data\":{\"id\":\"255\",\"suborderNo\":\"SUB_2018062797348039\",\"organUnitType\":\"部门\",\"action\":\"add\",\"parent\":\"10000\",\"ordinal\":0,\"organUnitFullName\":\"组织单元全称\"},\"success\":false}]}";
+        String str = "{\"errors\":[{\"code\":\"UUM70004\",\"message\":\"组织单元名称不能为空\",\"data\":[{\"id\":\"254\",\"suborderNo\":\"SUB_2018062797348039\",\"organUnitType\":\"部门\",\"action\":\"add\",\"parent\":\"10000\",\"ordinal\":0,\"organUnitFullName\":\"组织单元全称\"}],\"success\":false},{\"code\":\"UUM70004\",\"message\":\"组织单元名称不能为空\",\"data\":[{\"id\":\"255\",\"suborderNo\":\"SUB_2018062797348039\",\"organUnitType\":\"部门\",\"action\":\"add\",\"parent\":\"10000\",\"ordinal\":0,\"organUnitFullName\":\"组织单元全称\"}],\"success\":false}]}";
         JSONObject jsonObject = JSON.parseObject(str);
+
         JSONArray error = jsonObject.getJSONArray("errors");
+        System.out.println(error.toJSONString());
+
         List<Error> errors = JSON.parseObject(error.toJSONString(), new TypeReference<List<Error>>() {
         });
         for (Error e: errors) {
@@ -136,19 +141,17 @@ public class TestJSON {
         //将数组转换成字符串
         String jsonString = JSONObject.toJSONString(error);//将array数组转换成字符串
         //将字符串转成list集合
-        List<Error>  errors = JSONObject.parseArray(jsonString, Error.class);//把字符串转换成集合
-        for (Error e: errors) {
+        List<Error01>  errors = JSONObject.parseArray(jsonString, Error01.class);//把字符串转换成集合
+        for (Error01 e: errors) {
             //Error的属性
             System.out.println("另一种数组转换Error属性="+e.getSuccess());
             System.out.println("另一种数组转换Error属性="+e.getCode());
             System.out.println("另一种数组转换Error属性="+e.getMessage());
             //Error集合属性
-            List<Data> datas = e.getData();
-            for (Data d: datas) {
-                System.out.println("另一种数组转换data对象属性="+d.getId());
-                System.out.println("另一种数组转换data对象属性="+d.getAction());
-                System.out.println("另一种数组转换data对象属性="+d.getSuborderNo());
-            }
+            Data datas = e.getData();
+                System.out.println("另一种数组转换data对象属性="+datas.getId());
+                System.out.println("另一种数组转换data对象属性="+datas.getAction());
+                System.out.println("另一种数组转换data对象属性="+datas.getSuborderNo());
         }
         //另一种数组转换Error属性=false
         //另一种数组转换Error属性=UUM70004
@@ -175,14 +178,17 @@ public class TestJSON {
         data.setOrganUnitFullName("testJSON");
         data.setParent("0");
         data.setSuborderNo("58961");
+
         JSONObject jsonObj = (JSONObject) JSON.toJSON(data);
         JSON json = (JSON) JSON.toJSON(data);
         System.out.println("jsonObj"+jsonObj);
         System.out.println("json对象"+json);
         //jsonObj{"parent":"0","organUnitFullName":"testJSON","action":"add","id":"1","suborderNo":"58961","ordinal":8}
         //json对象{"parent":"0","organUnitFullName":"testJSON","action":"add","id":"1","suborderNo":"58961","ordinal":8}
-        System.out.println("jsonObj"+jsonObj.toJSONString());
-        System.out.println("json对象"+json.toJSONString());
+        JSONObject jsonObject = (JSONObject) JSONObject.toJSON(data);
+        JSON json01 = (JSON) JSON.toJSON(jsonObject);
+        System.out.println("jsonObj"+jsonObject.toJSONString());
+        System.out.println("json01对象"+json01);
     }
 
 }
