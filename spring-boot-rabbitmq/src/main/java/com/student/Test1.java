@@ -1,11 +1,14 @@
 package com.student;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Test1 {
     public static void main(String[] args) {
+        List<Integer> integers = Arrays.asList(1, 3, 4);
+        List<String> strings = Arrays.asList("1, 3, 4", "1, 3, 4", "1, 3, 4");
         List<Student> lists = new ArrayList<>();
         Student student = new Student();
         student.setName("laoli");
