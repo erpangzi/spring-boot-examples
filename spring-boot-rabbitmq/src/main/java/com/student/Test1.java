@@ -48,5 +48,8 @@ public class Test1 {
 
     }
 
+    public static void test01(List<Integer> list){
+        list.set(0,2);
+    }
 
 }

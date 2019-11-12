@@ -38,7 +38,7 @@ public class TestJSON {
     public  void jsonToJsonBean() {
         String s ="{\"action\":\"add\",\"id\":\"1\",\"ordinal\":8,\"organUnitFullName\":\"testJSON\",\"parent\":\"0\",\"suborderNo\":\"58961\"}";
 
-        JSONObject jsonObject = JSON.parseObject(s);
+        JSONObject jsonObject = JSONObject.parseObject(s);
         String action = jsonObject.getString("action");
         String id = jsonObject.getString("id");
         System.out.println("action :"+action);//add
