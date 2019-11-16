@@ -28,7 +28,9 @@ public class TestInteger {
         List<String> list = new ArrayList<>();
         list.add("1");list.add("2");list.add("3");
         System.out.println(list.toString());
-        System.out.println(StringUtils.join(list,", "));
+        System.out.println(StringUtils.join(list,",",1,list.size()));
+
+        System.out.println(Integer.parseInt("1"));
 
     }
 

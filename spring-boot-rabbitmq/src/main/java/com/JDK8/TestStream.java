@@ -41,7 +41,6 @@ public class TestStream {
 
 
         Stream<Employee> stream = list.stream();//创建流
-        list.stream().filter(employee -> employee.getName()=="").collect(Collectors.toList());
         List<Employee> collect = list.parallelStream().filter(employee -> (employee.getName() == zhangsan) || (employee.getName() == "李四")).collect(Collectors.toList());//过滤符合条件的流元素
 //                .limit(5)//只取5个
 //                .skip(4)//跳过4个

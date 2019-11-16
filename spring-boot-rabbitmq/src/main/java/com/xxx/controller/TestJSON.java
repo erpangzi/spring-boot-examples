@@ -99,8 +99,9 @@ public class TestJSON {
         JSONArray error = jsonObject.getJSONArray("errors");
         System.out.println(error.toJSONString());
 
-        List<Error> errors = JSON.parseObject(error.toJSONString(), new TypeReference<List<Error>>() {
-        });
+        List<Error> errors = JSON.parseObject(error.toJSONString(), new TypeReference<List<Error>>() {});
+        List<Error> sadf = (List<Error> )JSON.parseObject(error.toJSONString());
+
         for (Error e: errors) {
             //Error的属性
             System.out.println("Error属性="+e.getSuccess());
