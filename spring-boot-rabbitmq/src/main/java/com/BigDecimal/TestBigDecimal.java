@@ -41,18 +41,19 @@ public class TestBigDecimal {
         System.out.println(BigDecimal.ZERO.setScale(getBigDecimal(0.01).scale()));
         System.out.println(getBigDecimal(0.01).equals(BigDecimal.ZERO.setScale(getBigDecimal(0.01).scale())));
 
-        BigDecimal bigDecimal2 = new BigDecimal(0.003);
+        BigDecimal bigDecimal2 = getBigDecimal(0.0);
         System.out.println(bigDecimal2.equals(BigDecimal.ZERO));
 
-        BigDecimal bigDecimal3 = getBigDecimal("0");
+        BigDecimal bigDecimal3 = getBigDecimal("0.0");
         System.out.println(bigDecimal3.equals(BigDecimal.ZERO));
 
         System.out.println(bigDecimal2.compareTo(BigDecimal.ZERO));
         System.out.println(bigDecimal3.compareTo(BigDecimal.ZERO));
 
+
     }
 
-    
+
     public static BigDecimal getBigDecimal(Object obj) {
         if (obj == null)
             return BigDecimal.ZERO;

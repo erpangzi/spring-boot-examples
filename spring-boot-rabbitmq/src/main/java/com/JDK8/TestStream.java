@@ -27,6 +27,7 @@ public class TestStream {
                 || item == 2
                 || item == 3).collect(Collectors.toList());
         System.out.println(list.toString());
+        System.out.println(DetailCondition.toString());
     }
 
     @Test

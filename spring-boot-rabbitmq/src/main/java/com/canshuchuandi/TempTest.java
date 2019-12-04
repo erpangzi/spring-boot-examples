@@ -1,6 +1,7 @@
 package com.canshuchuandi;
 
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Test;
 
 public class TempTest {
     private void test1(A a){
@@ -11,12 +12,19 @@ public class TempTest {
         TempTest t = new TempTest();
         A a = new A();
         a.age = 10;
+        System.out.println("调用test1之前方法中的age="+a.age);
         t.test1(a);
         System.out.println("main方法中的age="+a.age);
         Integer integer = Integer.valueOf("1");
-        Integer.parseInt("1");
+        int i = Integer.parseInt("1");
 
     }
+
+    @Test
+    void test(){
+        long l = 0;
+    }
+
 }
 class A{
     public int age = 0;

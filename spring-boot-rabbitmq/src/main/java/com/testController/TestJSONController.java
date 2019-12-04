@@ -37,14 +37,14 @@ public class TestJSONController {
         return id;
     }
 
-    //请求form-data
+    //请求form-data(body里)
     @RequestMapping(value = "/getFormData", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String getFormData( String string){
+    public String getFormData(@RequestParam("string")  String string){
         System.out.println(string);
         return string;
     }
 
-    //请求多种参数
+    //请求多种参数,/{id},params(？后数据),Body Json
     @ResponseBody
     @RequestMapping(value = "/getMoreData/{id}", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String getMoreData(@PathVariable(name = "id") String id ,@RequestParam("string") String string, @RequestBody String datas){
