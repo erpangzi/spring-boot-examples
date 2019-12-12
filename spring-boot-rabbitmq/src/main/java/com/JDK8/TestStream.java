@@ -1,5 +1,6 @@
 package com.JDK8;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.sql.SQLOutput;
@@ -28,7 +29,13 @@ public class TestStream {
                 || item == 3).collect(Collectors.toList());
         System.out.println(list.toString());
         System.out.println(DetailCondition.toString());
+
+        List<Integer> collect = list.parallelStream().filter(item -> item > 1).collect(Collectors.toList());
+        System.out.println(StringUtils.strip(collect.toString(),""));
+
     }
+
+
 
     @Test
     public void test(){
@@ -157,6 +164,8 @@ public class TestStream {
         Stream<Integer> stream = list.stream();
         long count = stream.count();
         System.out.println(count);
+
+        list.forEach(ldou -> System.out.println(ldou));
     }
 
     @Test//取前几个元素
