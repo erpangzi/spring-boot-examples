@@ -1,23 +1,23 @@
-package com.xxx.controller;
+package com.JSON;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Error01 implements Serializable {
+public class Error implements Serializable {
 
     private static final long serialVersionUID = -432908543160176349L;
 
     private String code;
     private String message;
     private String success;
-    private Data data = new Data();
+    private List<Data> data = new ArrayList<>();
 
 
-    public Error01() {
+    public Error() {
     }
 
-    public Error01(String code, String message, String success, Data data) {
+    public Error(String code, String message, String success, List<Data> data) {
         this.code = code;
         this.message = message;
         this.success = success;
@@ -62,11 +62,11 @@ public class Error01 implements Serializable {
         this.success = success;
     }
 
-    public Data getData() {
+    public List<Data> getData() {
         return data;
     }
 
-    public void setData(Data data) {
+    public void setData(List<Data> data) {
         this.data = data;
     }
 }

@@ -1,4 +1,4 @@
-package com.xxx.controller;
+package com.JSON;
 
 import java.io.Serializable;
 public class Data implements Serializable {
