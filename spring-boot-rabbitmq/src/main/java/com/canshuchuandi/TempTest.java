@@ -4,10 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 public class TempTest {
-    private void test1(A a){
-        a.age = 20;
-        System.out.println("test1方法中的age="+a.age);
-    }
+
     public static void main(String[] args) {
         TempTest t = new TempTest();
         A a = new A();
@@ -18,6 +15,11 @@ public class TempTest {
         Integer integer = Integer.valueOf("1");
         int i = Integer.parseInt("1");
 
+    }
+
+    private void test1(A a){
+        a.age = 20;
+        System.out.println("test1方法中的age="+a.age);
     }
 
     @Test

@@ -11,16 +11,18 @@ public class Test {
 
 
     @org.junit.Test
-    void testEqualsObj(){
+    public void testEqualsObj(){
         User user1 = new User("1", "xiaohua", "14");
         User user2 = new User("2", "xiaohua", "14");
         System.out.println((user1.equals(user2)));//打印为 true
         String s = "1";
         s.hashCode();
+        System.out.println(user1.hashCode());
+        System.out.println(user2.hashCode());
     }
 
     @org.junit.Test
-      void testHashCodeObj(){
+      public void testHashCodeObj(){
         User user1 = new User("1", "xiaohua", "14");
         User user2 = new User("2", "xiaohua", "14");
         Set<User> userSet = new HashSet<>();

@@ -6,7 +6,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class TestJSON {
 
@@ -190,6 +193,33 @@ public class TestJSON {
         JSON json01 = (JSON) JSON.toJSON(jsonObject);
         System.out.println("jsonObj"+jsonObject.toJSONString());
         System.out.println("json01对象"+json01);
+    }
+
+    //由json字符串转换成Map对象
+    @Test
+    public void test01() {
+        //json字符串
+        String jsondata = "{\"contend\":[{\"bid\":\"22\",\"carid\":\"0\"},{\"bid\":\"22\",\"carid\":\"0\"}],\"result\":100,\"total\":2}";
+        JSONObject obj = JSON.parseObject(jsondata);
+        //map对象
+        Map<String, Object> data = new HashMap<>();
+        //循环转换
+        Iterator it = obj.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<String, Object> entry = (Map.Entry<String, Object>) it.next();
+            data.put(entry.getKey(), entry.getValue());
+        }
+        System.out.println("map对象:" + data.toString());
+    }
+
+    //由Map对象转换成json字符串
+    @Test
+    public void test02() {
+        //map对象
+        Map<String, Object> data = new HashMap<>();
+        data.put("1", 1);
+        String x = JSONObject.toJSONString(data);
+        System.out.println("json字符串:" + x);
     }
 
 }

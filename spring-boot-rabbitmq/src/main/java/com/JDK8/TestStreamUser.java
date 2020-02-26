@@ -22,6 +22,20 @@ public class TestStreamUser {
     }
 
     /**
+     * reduce shuai
+     **/
+    @Test
+    public void testReduce(){
+        Integer reduce = list().parallelStream().map(User::getAge).reduce(0, (a, b) -> a + b);
+        System.out.println(reduce);
+
+        List<Integer> list1 = Arrays.asList(1,2,3,4,5,5,4,3,2,1);
+        long count = list1.stream().reduce(0, (a,b)->a+b);
+        System.out.println(count);
+
+    }
+
+    /**
      * sort 排序.
      */
     @Test
