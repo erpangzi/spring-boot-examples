@@ -73,6 +73,9 @@ public class TestStream {
         // Stream<T> sorted(Comparator<? super T> comparator);
         // int compare(T o1, T o2);
         list.stream().sorted((s1, s2) -> s1.compareTo(s2)).forEach(System.out::println);
+
+        List<String> list1 = Arrays.asList("3", "2", "1", "6", "5");
+        list1.stream().sorted((s1,s2) -> s1.compareTo(s2)).forEach(System.out::println);
     }
 
     @Test//去重
