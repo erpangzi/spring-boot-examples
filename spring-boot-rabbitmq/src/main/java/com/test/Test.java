@@ -1,6 +1,7 @@
 package com.test;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.Assert;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -107,5 +108,22 @@ public class Test {
 
     }
 
+
+    @org.junit.Test
+    public void test10(){
+        int a = 0;
+//        try {
+//             a ++;
+//             return;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            a ++;
+//            System.out.println(a);
+//        }
+        Integer integer = null;
+        Assert.notNull(integer,"参数为空");
+
+    }
 
 }

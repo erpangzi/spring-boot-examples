@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@Controller
+@RestController
 @RequestMapping("/testJSONController")
 public class TestJSONController {
 
@@ -23,14 +23,17 @@ public class TestJSONController {
         return string;
     }
 
-    //请求？后边数据
+    //请求？后边数据, form-data
+    @ResponseBody
     @RequestMapping(value = "/getData", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String getData(@RequestParam(name = "string") String string){
+    public String getData(@RequestParam(name = "string") String string ,@RequestParam(name = "string01") String string01){
         System.out.println(string);
+        System.out.println(string01);
         return string;
     }
 
     //请求testJSONController/getID/111
+    @ResponseBody
     @RequestMapping(value = "/getID/{id}", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String getID(@PathVariable(name = "id") String id){
         System.out.println(id);
@@ -45,12 +48,12 @@ public class TestJSONController {
     }
 
     //请求多种参数,/{id},params(？后数据),Body Json
-    @ResponseBody
     @RequestMapping(value = "/getMoreData/{id}", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String getMoreData(@PathVariable(name = "id") String id ,@RequestParam("string") String string, @RequestBody String datas){
         System.out.println(id);
         System.out.println(string);
-        System.out.println(datas);
+        JSONObject jsonObject = JSONObject.parseObject(datas);
+        System.out.println(jsonObject.toJSONString());
         return datas;
     }
 
