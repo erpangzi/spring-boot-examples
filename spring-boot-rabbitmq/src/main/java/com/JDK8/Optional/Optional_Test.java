@@ -79,9 +79,9 @@ public class Optional_Test {
 
     @Test
     public void whenCreateOfNullableOptional_thenOk() {
-        String name = null;
+        String name = "";
         Optional<String> opt = Optional.ofNullable(name);
-
+        System.out.println(opt.isPresent());
         Assert.assertEquals("John", opt.get());
     }
 

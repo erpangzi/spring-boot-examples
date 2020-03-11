@@ -75,6 +75,7 @@ public enum DeliveryStatusEnum {
         String name = DeliveryStatusEnum.DELIVERING.name();
         System.out.println(name);
         DeliveryStatusEnum deliverunaudited = DeliveryStatusEnum.find("audit");
+        DeliveryStatusEnum[] values = DeliveryStatusEnum.values();
 
     }
 
