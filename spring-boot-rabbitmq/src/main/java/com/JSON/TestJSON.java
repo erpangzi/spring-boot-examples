@@ -42,11 +42,12 @@ public class TestJSON {
         String s ="{\"action\":\"add\",\"id\":\"1\",\"ordinal\":8,\"organUnitFullName\":\"testJSON\",\"parent\":\"0\",\"suborderNo\":\"58961\"}";
 
         JSONObject jsonObject = JSONObject.parseObject(s);
+        System.out.println("jsonObject :"+jsonObject.toJSONString());
         String action = jsonObject.getString("action");
         String id = jsonObject.getString("id");
         System.out.println("action :"+action);//add
         System.out.println("id :"+id);//1
-        System.out.println("jsonObject :"+jsonObject);
+
         //action =add
         //id =1
         //jsonObject ={"parent":"0","organUnitFullName":"testJSON","action":"add","id":"1","suborderNo":"58961","ordinal":8}
@@ -57,16 +58,23 @@ public class TestJSON {
     public  void jsonToBean() {
         String str ="{\"meta\":{\"code\":\"0\",\"message\":\"同步成功!\"},\"data\":{\"orderno\":\"U_2018062790915774\",\"suborderno\":\"SUB_2018062797348039\",\"type\":\"organunit\",\"result\":{\"organunit\":{\"totalCount\":2,\"successCount\":0,\"failCount\":2,\"errors\":[{\"code\":\"UUM70004\",\"message\":\"组织单元名称不能为空\",\"data\":[{\"id\":\"254\",\"suborderNo\":\"SUB_2018062797348039\",\"organUnitType\":\"部门\",\"action\":\"add\",\"parent\":\"10000\",\"ordinal\":0,\"organUnitFullName\":\"组织单元全称\"}],\"success\":false},{\"code\":\"UUM70004\",\"message\":\"组织单元名称不能为空\",\"data\":[{\"id\":\"255\",\"suborderNo\":\"SUB_2018062797348039\",\"organUnitType\":\"部门\",\"action\":\"add\",\"parent\":\"10000\",\"ordinal\":0,\"organUnitFullName\":\"组织单元全称\"}],\"success\":false}]},\"role\":{\"totalCount\":0,\"successCount\":0,\"failCount\":0,\"errors\":[]},\"user\":{\"totalCount\":0,\"successCount\":0,\"failCount\":0,\"errors\":[]}}}}";
         JSONObject jsonObject = JSON.parseObject(str);
+        System.out.println(jsonObject.toJSONString());
+        System.out.println("===============");
         JSONObject data = jsonObject.getJSONObject("data");
         System.out.println("date:"+data);
+        System.out.println("===============");
         JSONObject result = data.getJSONObject("result");
         System.out.println("result:"+result);
+        System.out.println("===============");
         String organunit1 = result.getString("organunit");
         System.out.println("organunit1"+organunit1);
+        System.out.println("===============");
         JSONObject organunit = result.getJSONObject("organunit");
         System.out.println("organunit"+organunit);
+        System.out.println("===============");
         JSONArray errors2 = organunit.getJSONArray("errors");
         System.out.println("errors2:"+errors2);
+        System.out.println("===============");
         List<Error> error = JSON.parseObject(errors2.toJSONString(), new TypeReference<List<Error>>() {});
         error.stream().forEach(System.out::println);
     }

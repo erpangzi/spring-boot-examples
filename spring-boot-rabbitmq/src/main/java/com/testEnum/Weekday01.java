@@ -39,5 +39,16 @@ class Test2{
         //nowday ====> SAT
         //nowday int ====> 6
         //nextday ====> SUN
+
+        System.out.println(Weekday01.SAT.name());
     }
 }
+
+
+
+
+
+
+
+
+

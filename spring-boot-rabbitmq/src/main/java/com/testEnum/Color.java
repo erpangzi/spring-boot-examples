@@ -52,15 +52,3 @@ public enum Color implements Behaviour {
 
 
 
-class Test02{
-    public static void main(String[] args) {
-        System.out.println("nowday ====> " + Weekday01.SAT);
-        System.out.println("nowday int ====> " + Weekday01.SAT.ordinal());
-        System.out.println("nextday ====> " + Weekday01.getNextDay(Weekday01.SAT)); // 输出 SUN
-
-        //输出：
-        //nowday ====> SAT
-        //nowday int ====> 6
-        //nextday ====> SUN
-    }
-}

@@ -3,6 +3,7 @@ package com.JDK8;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -22,7 +23,7 @@ public class TestStreamUser {
     }
 
     /**
-     * reduce shuai
+     * reduce 求和，归纳
      **/
     @Test
     public void testReduce(){

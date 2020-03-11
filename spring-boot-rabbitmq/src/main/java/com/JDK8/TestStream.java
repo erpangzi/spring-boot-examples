@@ -22,11 +22,10 @@ public class TestStream {
          **/
 
         List<Integer> list = new ArrayList<Integer>();
+        List<String> strings = Arrays.asList("1", "2");
         list.add(1);list.add(2);list.add(3);list.add(4);
 
-        List<Integer> DetailCondition=list.stream().filter((Integer item) -> item == 1
-                || item == 2
-                || item == 3).collect(Collectors.toList());
+        List<Integer> DetailCondition=list.stream().filter((Integer item) -> item == 1 || item == 2 || item == 3).collect(Collectors.toList());
         System.out.println(list.toString());
         System.out.println(DetailCondition.toString());
 
@@ -61,10 +60,11 @@ public class TestStream {
     public void map(){
         List<String> list = Arrays.asList("how", "are", "you", "how", "old", "are", "you", "?");
         // <R> Stream<R> map(Function<? super T, ? extends R> mapper);
+        list.parallelStream().map(item->item+"--").collect(Collectors.toMap(item->item+"1",item->item));
         for (String s : list.stream().map(item -> item.toUpperCase()).collect(Collectors.toList())) {
             System.out.println(s);
         }
-        list.stream().forEach(System.out::println);
+        list.stream().forEach(item -> System.out.print(item+"-"));
     }
 
     @Test//排序
