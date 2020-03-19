@@ -5,7 +5,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import java.util.Arrays;
 import java.util.Map;
 
-public class ArraysUtilsTest {
+public class ArrayUtilsTest {
 
     public static void main(String[] args) {
         // 1.add():将给定的数据添加到指定的数组中，返回一个新的数组。

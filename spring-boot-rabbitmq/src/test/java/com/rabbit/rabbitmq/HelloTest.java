@@ -17,6 +17,7 @@ public class HelloTest {
 	@Test
 	public void hello() throws Exception {
 		helloSender.send();
+		//helloSender.send01();
 	}
 
 

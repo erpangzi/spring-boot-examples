@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-@Component
+@Component //普通模式
 public class HelloSender {
 
 	@Autowired
@@ -24,11 +24,11 @@ public class HelloSender {
 	}
 
 	public void send01(){
-		Message message = new Message("hello".getBytes(),new MessageProperties());
+		Message message = new Message("hello01".getBytes(),new MessageProperties());
 		// 发送消息到默认的交换器，默认的路由键
-		rabbitTemplate.send(message);
+		rabbitTemplate.convertAndSend(message);
 		// 发送消息到指定的交换器，指定的路由键
-		rabbitTemplate.send("direct.exchange","key.1",message);
+		rabbitTemplate.convertAndSend("direct.exchange","key.1",message);
 
 	}
 

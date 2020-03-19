@@ -4,7 +4,7 @@ import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component //广播模式
 public class FanoutSender {
 
 	@Autowired

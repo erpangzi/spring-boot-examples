@@ -126,4 +126,20 @@ public class Test {
 
     }
 
+
+    @org.junit.Test
+    public void test11(){
+        Map<Long,Map<String,Object>> ordersMap = new HashMap<Long,Map<String,Object>>();
+        HashMap<String, Object> stringObjectHashMap = new HashMap<>();
+        stringObjectHashMap.put("1", 1);
+        stringObjectHashMap.put("2", 2);
+        ordersMap.put(111L,stringObjectHashMap);
+        ordersMap.put(222L,stringObjectHashMap);
+
+        System.out.println(ordersMap.values().toString());
+        System.out.println(stringObjectHashMap.values().toString());
+
+    }
+
+
 }
