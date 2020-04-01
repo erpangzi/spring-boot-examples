@@ -6,10 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class TestJSON {
 
@@ -228,6 +225,16 @@ public class TestJSON {
         data.put("1", 1);
         String x = JSONObject.toJSONString(data);
         System.out.println("json字符串:" + x);
+    }
+
+    @Test
+    public void test03() {
+        //list对象
+        List<String> list = Arrays.asList("1","2","3");
+
+        String s = JSONObject.toJSONString(list);
+        System.out.println(s);
+
     }
 
 }

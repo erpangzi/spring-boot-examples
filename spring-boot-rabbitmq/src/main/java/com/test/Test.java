@@ -121,8 +121,22 @@ public class Test {
 //            a ++;
 //            System.out.println(a);
 //        }
-        Integer integer = null;
+        Integer integer = 1;
         Assert.notNull(integer,"参数为空");
+        Assert.isTrue(true, "是true验证通过");
+
+        Assert.notNull("","参数为空");
+        Assert.notNull(" ","参数为空");
+
+        String a0 = "";
+        String a1 = " ";
+        String a2 = null;
+        String a3 = "null";
+
+        //Assert.hasText(a0, "a is blank");
+        //Assert.hasText(a1, "a is blank kk");
+        //Assert.hasText(a2, "a is null");
+        //Assert.hasText(a3, "a is not null");
 
     }
 
@@ -138,6 +152,18 @@ public class Test {
 
         System.out.println(ordersMap.values().toString());
         System.out.println(stringObjectHashMap.values().toString());
+
+    }
+
+
+    @org.junit.Test
+    public void test12(){
+            String ss = "2" ;
+            switch (ss){
+                case "1" :{System.out.println(1);}
+                case "2" :
+                case "3" :{System.out.println(3);}
+            }
 
     }
 

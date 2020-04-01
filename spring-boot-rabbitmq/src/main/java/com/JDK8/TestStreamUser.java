@@ -72,15 +72,21 @@ public class TestStreamUser {
         list.forEach(user -> System.out.println(user));
         System.out.println("-----过滤后-----");
         // java 8 前
-        System.out.println("java 8 前");
-        for(User user: list){
-            if (user.getAge() > 50) {
-                System.out.println(user);
-            }
-        }
+//        System.out.println("java 8 前");
+//        for(User user: list){
+//            if (user.getAge() > 50) {
+//                System.out.println(user);
+//            }
+//        }
         // java 8 stream
         System.out.println("java 8 stream");
-        list.stream().filter((User user) -> user.getAge() > 50).forEach(user -> System.out.println(user));
+        //list.stream().filter((User user) -> user.getAge() > 50).forEach(user -> System.out.println(user));
+
+        List<User> collect = list.stream().filter((User user) -> user.getAge() > 50).collect(toList());
+        collect.forEach(item-> System.out.print(item + " "));
+        System.out.println("======");
+        list.parallelStream().forEach(item-> System.out.print(item + " "));
+
     }
 
     /**

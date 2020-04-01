@@ -4,12 +4,34 @@ import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/testJSONController")
 public class TestJSONController {
+
+    @RequestMapping(value = "/getJSONDataGet01", method = RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public String getJSONDataGet01(@RequestParam String string){
+        System.out.println(string);
+
+        return string;
+    }
+
+    @RequestMapping(value = "/getJSONDataGet", method = RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public String getJSONDataGet(@RequestBody String string){
+        System.out.println(string);
+
+        return string;
+    }
+
+    @RequestMapping(value = "/getJSONList", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public List<String> getJSONDataGet(@RequestBody List<String> stringlist){
+        String s = JSONObject.toJSONString(stringlist);
+        System.out.println(s);
+        return stringlist;
+    }
 
     //请求body为JSON数据
     @ResponseBody

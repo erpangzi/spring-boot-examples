@@ -4,10 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -60,11 +58,16 @@ public class TestStream {
     public void map(){
         List<String> list = Arrays.asList("how", "are", "you", "how", "old", "are", "you", "?");
         // <R> Stream<R> map(Function<? super T, ? extends R> mapper);
-        list.parallelStream().map(item->item+"--").collect(Collectors.toMap(item->item+"1",item->item));
+
         for (String s : list.stream().map(item -> item.toUpperCase()).collect(Collectors.toList())) {
             System.out.println(s);
         }
+        list.stream().map(item -> item.toUpperCase()).collect(Collectors.toList()).parallelStream().forEach(System.out::println);
         list.stream().forEach(item -> System.out.print(item+"-"));
+
+        Map<String, String> collect = list.parallelStream().map(item -> item + "--").collect(Collectors.toMap(item -> item + "1", Function.identity(), (k1, k2) -> k1));
+        Set<String> strings = collect.keySet();
+        strings.parallelStream().forEach(System.out::println);
     }
 
     @Test//排序
@@ -73,6 +76,7 @@ public class TestStream {
         // Stream<T> sorted(Comparator<? super T> comparator);
         // int compare(T o1, T o2);
         list.stream().sorted((s1, s2) -> s1.compareTo(s2)).forEach(System.out::println);
+        list.stream().sorted((s1, s2) -> s1.compareTo(s2)).map(item-> item+"1").collect(Collectors.toList()).parallelStream().forEach(System.out::println);
 
         List<String> list1 = Arrays.asList("3", "2", "1", "6", "5");
         list1.stream().sorted((s1,s2) -> s1.compareTo(s2)).forEach(System.out::println);
