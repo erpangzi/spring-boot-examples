@@ -1,9 +1,11 @@
 package com.Annotation01;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/IndexController")
 public class IndexController {
 
     @GetMapping("/sourceA")

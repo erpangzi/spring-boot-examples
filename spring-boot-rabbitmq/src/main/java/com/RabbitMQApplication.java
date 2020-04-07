@@ -1,13 +1,21 @@
 package com;
 
 
+import com.InterfaceTest.TestInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @SpringBootApplication
+@RestController
+@RequestMapping("/App")
 public class RabbitMQApplication {
 
 	@Autowired
@@ -17,13 +25,20 @@ public class RabbitMQApplication {
 
 	public static void main(String[] args) {
                 System.out.println(11111);
-		SpringApplication.run(RabbitMQApplication.class, args);
+		ConfigurableApplicationContext run = SpringApplication.run(RabbitMQApplication.class, args);
 
 		//启动WEB项目
 		test002 bean = SpringContextUtil.getBean(test002.class);
 		System.out.println(bean);
 
+
 //		test002 bean1 = applicationContext.getBean(test002.class);
 //		System.out.println(bean);
 	}
+
+	@PostMapping(value = "/App01",produces = "application/json;charset=UTF-8")
+	public String App01(){
+		return "服务可用~~";
+	}
+
 }
