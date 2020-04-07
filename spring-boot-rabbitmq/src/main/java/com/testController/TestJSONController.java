@@ -27,7 +27,7 @@ public class TestJSONController {
     }
 
     @RequestMapping(value = "/getJSONList", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public List<String> getJSONDataGet(@RequestBody List<String> stringlist){
+    public List<String> getJSONDataPOST(@RequestBody List<String> stringlist){
         String s = JSONObject.toJSONString(stringlist);
         System.out.println(s);
         return stringlist;

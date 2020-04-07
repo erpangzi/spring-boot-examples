@@ -95,6 +95,10 @@ public class TestJSON {
         System.out.println("另一种方式获取="+dd.getAction()+"---id="+dd.getId());
         //另一种方式获取data对象Data{id='1', suborderNo='58961', organUnitType='null', action='add', parent='0', organUnitFullName='testJSON', ordinal=8}
         //另一种方式获取=add---id=1
+
+        Map<String, String> stringStringMap = JSON.parseObject(s, new TypeReference<Map<String, String>>() {
+        });
+        System.out.println(stringStringMap.toString());
     }
 
      
@@ -108,7 +112,7 @@ public class TestJSON {
         System.out.println(error.toJSONString());
 
         List<Error> errors = JSON.parseObject(error.toJSONString(), new TypeReference<List<Error>>() {});
-        List<Error> sadf = (List<Error> )JSON.parseObject(error.toJSONString());
+        List<Map<String ,String>> errorlist = JSON.parseObject(error.toJSONString(), new TypeReference<List<Map<String ,String>>>() {});
 
         for (Error e: errors) {
             //Error的属性

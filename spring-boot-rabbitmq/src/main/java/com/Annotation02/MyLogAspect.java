@@ -25,7 +25,7 @@ public class MyLogAspect {
 
     // 3. 环绕通知
     @Around("logPointCut()")
-    public void logAround(ProceedingJoinPoint joinPoint){
+    public String logAround(ProceedingJoinPoint joinPoint){
         // 获取方法名称
         String methodName = joinPoint.getSignature().getName();
         // 获取入参
@@ -37,13 +37,14 @@ public class MyLogAspect {
         }
         System.out.println("进入[" + methodName + "]方法,参数为:" + sb.toString());
 
+        String proceed = "";
         // 继续执行方法
         try {
-            joinPoint.proceed();
+            proceed = (String)joinPoint.proceed();
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
-        System.out.println(methodName + "方法执行结束");
+        return proceed;
 
     }
 }

@@ -7,7 +7,7 @@ import java.util.*;
 public class Test01 {
 
     public static void main(String[] args) {
-        Integer a = 5;
+        Integer a = 134;
         System.out.println("方法前：" + a);
         fun(a);
         System.out.println("方法后：" + a);// 输出结果为5

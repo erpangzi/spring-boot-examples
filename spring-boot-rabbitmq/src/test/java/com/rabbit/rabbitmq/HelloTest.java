@@ -16,7 +16,9 @@ public class HelloTest {
 
 	@Test
 	public void hello() throws Exception {
-		helloSender.send();
+		for (int i = 0 ; i<10;i++) {
+			helloSender.send();
+		}
 		//helloSender.send01();
 	}
 

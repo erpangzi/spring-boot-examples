@@ -3,6 +3,7 @@ package com.Annotation01;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 public class MyFieldTest {
 
@@ -15,6 +16,7 @@ public class MyFieldTest {
 
         // 获取类模板
         Class c = MyFieldTest.class;
+        Method[] methods = c.getMethods();
 
         // 获取所有字段
         for(Field f : c.getDeclaredFields()){
