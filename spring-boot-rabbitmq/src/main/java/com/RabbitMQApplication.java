@@ -1,15 +1,18 @@
 package com;
 
-import com.testController.TestJSONController;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
 
 
 @SpringBootApplication
 public class RabbitMQApplication {
 
+	@Autowired
+	private SpringContextUtil springContextUtil;
+	@Autowired
 	private static ApplicationContext applicationContext;
 
 	public static void main(String[] args) {
@@ -17,7 +20,10 @@ public class RabbitMQApplication {
 		SpringApplication.run(RabbitMQApplication.class, args);
 
 		//启动WEB项目
-//		TestJSONController testJSONController = applicationContext.getBean(TestJSONController.class);
-//		System.out.println(testJSONController);
+		test002 bean = SpringContextUtil.getBean(test002.class);
+		System.out.println(bean);
+
+//		test002 bean1 = applicationContext.getBean(test002.class);
+//		System.out.println(bean);
 	}
 }
