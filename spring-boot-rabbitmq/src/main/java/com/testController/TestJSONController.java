@@ -6,11 +6,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/testJSONController")
 public class TestJSONController {
+
+    @RequestMapping(value = "/getJSONDataGet02", method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String getJSONDataGet02(@RequestBody Map<String, Object> mapParam){
+        System.out.println(mapParam);
+        return mapParam.toString();
+    }
 
     @RequestMapping(value = "/getJSONDataGet01", method = RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public String getJSONDataGet01(@RequestParam String string){

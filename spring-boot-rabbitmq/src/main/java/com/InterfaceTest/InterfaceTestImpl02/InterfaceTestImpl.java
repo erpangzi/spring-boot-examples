@@ -1,10 +1,11 @@
-package com.InterfaceTest;
+package com.InterfaceTest.InterfaceTestImpl02;
 
 
+import com.InterfaceTest.InterfaceTest;
 import org.springframework.stereotype.Service;
 
 @Service("interfaceTestImpl02")
-public class InterfaceTestImpl02 implements InterfaceTest {
+class InterfaceTestImpl implements InterfaceTest {
     @Override
     public void method01() {
         System.out.println("这是方法实现InterfaceTest02");

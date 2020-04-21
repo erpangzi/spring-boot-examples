@@ -31,6 +31,8 @@ public class RabbitMQApplication {
 		test002 bean = SpringContextUtil.getBean(test002.class);
 		System.out.println(bean);
 
+//		RabbitMQApplication bean1 = applicationContext.getBean(RabbitMQApplication.class);
+
 
 //		test002 bean1 = applicationContext.getBean(test002.class);
 //		System.out.println(bean);

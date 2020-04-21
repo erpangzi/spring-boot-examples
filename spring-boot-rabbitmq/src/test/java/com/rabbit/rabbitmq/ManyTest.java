@@ -30,6 +30,7 @@ public class ManyTest {
 		for (int i=0;i<10;i++){
 			neoSender.send(i);
 			neoSender2.send(i);
+			neoSender.send(i);
 		}
 	}
 

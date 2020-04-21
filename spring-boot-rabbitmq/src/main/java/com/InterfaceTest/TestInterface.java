@@ -17,11 +17,11 @@ import javax.annotation.Resource;
 public class TestInterface {
     @Qualifier("interfaceTestImpl02")
     @Autowired
-    private InterfaceTestImpl02 interfaceTestImpl02;
+    private InterfaceTest interfaceTestImpl;
 
     @PostMapping(value = "/test01")
     public void test01(){
-        interfaceTestImpl02.method01();
+        interfaceTestImpl.method01();
     }
 
 }
