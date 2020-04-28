@@ -27,7 +27,7 @@ public class HelloSenderACK implements RabbitTemplate.ReturnCallback {
                 System.out.println("HelloSender 消息发送成功 ");
             }
         });
-        this.rabbitTemplate.convertAndSend("hello", context);
+        this.rabbitTemplate.convertAndSend("helloack", context);
     }
 
     public void sendObj() {

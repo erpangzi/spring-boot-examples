@@ -2,11 +2,13 @@ package com;
 
 
 import com.InterfaceTest.TestInterface;
+import javafx.application.Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +22,8 @@ public class RabbitMQApplication {
 
 	@Autowired
 	private SpringContextUtil springContextUtil;
-	@Autowired
-	private static ApplicationContext applicationContext;
+//	@Autowired
+//	private static ApplicationContext applicationContext;
 
 	public static void main(String[] args) {
                 System.out.println(11111);
@@ -33,9 +35,9 @@ public class RabbitMQApplication {
 
 //		RabbitMQApplication bean1 = applicationContext.getBean(RabbitMQApplication.class);
 
-
-//		test002 bean1 = applicationContext.getBean(test002.class);
-//		System.out.println(bean);
+//		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(RabbitMQApplication.class);
+//		test01 bean1 = applicationContext.getBean(test01.class);
+//		System.out.println(bean1);
 	}
 
 	@PostMapping(value = "/App01",produces = "application/json;charset=UTF-8")

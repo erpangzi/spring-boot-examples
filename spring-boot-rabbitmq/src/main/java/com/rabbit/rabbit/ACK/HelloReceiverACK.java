@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.Map;
 
 @Component
-@RabbitListener(queues = "hello")
+@RabbitListener(queues = "helloack")
 public class HelloReceiverACK {
 
     @RabbitHandler

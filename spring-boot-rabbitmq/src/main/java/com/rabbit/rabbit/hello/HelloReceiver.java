@@ -21,6 +21,7 @@ public class HelloReceiver {
             value = @Queue(value = "consumer_queue",durable = "true"),
             key = "key.#"
     ))
+    @RabbitHandler
     public void processMessage1(Message message) {
         System.out.println(message);
     }
@@ -29,6 +30,13 @@ public class HelloReceiver {
     @RabbitHandler
     public void processMessage2(byte[] message) {
         System.out.println(new String(message));
+    }
+
+
+    @RabbitListener(queues = "helloObj")
+    @RabbitHandler
+    public void processMessage3(Message message) {
+        System.out.println(message);
     }
 
 }

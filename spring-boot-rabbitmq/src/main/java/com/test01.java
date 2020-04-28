@@ -1,6 +1,9 @@
 package com;
 
+import org.springframework.context.annotation.Bean;
+
 import java.io.Serializable;
+
 
 public class test01 implements Serializable {
 
@@ -19,7 +22,6 @@ public class test01 implements Serializable {
 
 
     }
-
 
 
 

@@ -20,4 +20,14 @@ public class FanoutTest {
 	}
 
 
+	/*
+Sender : hi, fanout msg
+fanout Receiver B: hi, fanout msg
+HelloReceiver收到  : hi, fanout msg 收到时间Mon Apr 27 11:08:38 CST 2020
+receiver success
+fanout Receiver C: hi, fanout msg
+fanout Receiver A  : hi, fanout msg
+
+	 */
+
 }

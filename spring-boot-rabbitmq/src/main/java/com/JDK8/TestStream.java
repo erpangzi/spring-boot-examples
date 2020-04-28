@@ -64,10 +64,14 @@ public class TestStream {
         }
         list.stream().map(item -> item.toUpperCase()).collect(Collectors.toList()).parallelStream().forEach(System.out::println);
         list.stream().forEach(item -> System.out.print(item+"-"));
-
-        Map<String, String> collect = list.parallelStream().map(item -> item + "--").collect(Collectors.toMap(item -> item + "1", Function.identity(), (k1, k2) -> k1));
+        System.out.println();
+        Map<String, String> collect = list.parallelStream().map(item -> item + "--").collect(Collectors.toMap(item -> item + "1", item -> item + "2", (k1, k2) -> k1));
         Set<String> strings = collect.keySet();
-        strings.parallelStream().forEach(System.out::println);
+        strings.parallelStream().forEach(System.out::print);
+        System.out.println();
+        Collection<String> values = collect.values();
+        values.parallelStream().forEach(System.out::print);
+
     }
 
     @Test//排序
