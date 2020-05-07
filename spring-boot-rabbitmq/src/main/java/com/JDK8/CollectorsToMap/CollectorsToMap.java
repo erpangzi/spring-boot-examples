@@ -2,6 +2,7 @@ package com.JDK8.CollectorsToMap;
 
 import org.assertj.core.util.Lists;
 import org.junit.Test;
+import org.springframework.util.CollectionUtils;
 
 import java.util.*;
 import java.util.function.Function;
@@ -84,6 +85,21 @@ public class CollectorsToMap {
         System.out.println(collect2.toString());
         System.out.println(taskMap.toString());
     }
+
+    @Test
+    public void testCollectors(){
+        List <Integer> ids = Arrays.asList(1,2,3,4,5,6,7,8);
+        String string = ids.parallelStream().filter(e->e!=null).map(e->e.toString()).distinct().collect(Collectors.joining(","));
+        System.out.println(string);
+    }
+
+    @Test
+    public void testCollectorUtils(){
+        List<String> orderCurrencyVoList =  new ArrayList<String>();
+        System.out.println(CollectionUtils.isEmpty(orderCurrencyVoList));
+    }
+
+
 
 }
 

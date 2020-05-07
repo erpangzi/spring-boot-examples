@@ -1,5 +1,6 @@
 package com.JDK8;
 
+import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
@@ -8,6 +9,7 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import com.yonyou.google.common.collect.Lists;
 
 public class TestStream {
 
@@ -203,5 +205,32 @@ public class TestStream {
         concat.forEach(name-> System.out.println(name));
     }
 
+    @Test
+    public void mapMagerValue(){
+
+        List<String> list = Lists.newArrayList("1", "2", "3", "1");
+        Map<String, List<String>> map = list.stream().collect(Collectors.toMap(key -> key,
+                value -> Lists.newArrayList(value),
+                (List<String> newValueList, List<String> oldValueList) -> {
+                    oldValueList.addAll(newValueList);
+                    return oldValueList;
+                }));
+        System.out.println(JSON.toJSONString(map));
+
+    }
+
+    @Test
+    public void mapMagerValue01(){
+
+        List<User> list = Lists.newArrayList(new User("zhangsan",1),new User("lisi",2), new User("wangwu",3), new User("zhangsan",4));
+        Map<String, List<User>> map = list.stream().collect(Collectors.toMap(key -> key.getName(),
+                value -> Lists.newArrayList(value),
+                (List<User> newValueList, List<User> oldValueList) -> {
+                    oldValueList.addAll(newValueList);
+                    return oldValueList;
+                }));
+        System.out.println(JSON.toJSONString(map));
+
+    }
 
 }
