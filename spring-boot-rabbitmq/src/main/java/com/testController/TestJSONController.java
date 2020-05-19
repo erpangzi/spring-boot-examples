@@ -1,6 +1,7 @@
 package com.testController;
 
 import com.alibaba.fastjson.JSONObject;
+import com.student.Student;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -84,6 +85,15 @@ public class TestJSONController {
         JSONObject jsonObject = JSONObject.parseObject(datas);
         System.out.println(jsonObject.toJSONString());
         return datas;
+    }
+
+    //请求参数为对象
+    @RequestMapping(value = "/getStudent" ,method = RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public Student getStudent(@RequestBody Student student){
+            student.setName("1");
+            student.setNumber(1);
+            return student;
+
     }
 
 }

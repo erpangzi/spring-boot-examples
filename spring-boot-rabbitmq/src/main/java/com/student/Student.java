@@ -1,11 +1,14 @@
 package com.student;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Student implements Cloneable{
 
     private String name;
     private Integer number;
+    private Long testLong;
+    private BigDecimal testBigDecimal;
 
     public Student() {
     }
@@ -13,6 +16,29 @@ public class Student implements Cloneable{
     public Student(String name, Integer number) {
         this.name = name;
         this.number = number;
+    }
+
+    public Student(String name, Integer number, Long testLong, BigDecimal testBigDecimal) {
+        this.name = name;
+        this.number = number;
+        this.testLong = testLong;
+        this.testBigDecimal = testBigDecimal;
+    }
+
+    public Long getTestLong() {
+        return testLong;
+    }
+
+    public void setTestLong(Long testLong) {
+        this.testLong = testLong;
+    }
+
+    public BigDecimal getTestBigDecimal() {
+        return testBigDecimal;
+    }
+
+    public void setTestBigDecimal(BigDecimal testBigDecimal) {
+        this.testBigDecimal = testBigDecimal;
     }
 
     public void setName(String name) {

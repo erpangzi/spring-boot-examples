@@ -1,9 +1,11 @@
 package com.JDK8;
 
+import org.assertj.core.util.Lists;
 import org.junit.Test;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
@@ -203,6 +205,60 @@ public class TestStreamUser {
         List<String> collect = words.stream().map(s -> s.toUpperCase()).collect(toList());
         collect.forEach(s -> System.out.println(s));
     }
+
+
+
+
+    @Test
+    public void test01() {
+        List<Aopi> aopiList = Lists.newArrayList();
+
+        Aopi aopi = new Aopi("1", 1);
+        Aopi aop2 = new Aopi("2", 2);
+        Aopi aop3 = new Aopi("3", 3);
+        Aopi aop4 = new Aopi("4", 4);
+
+        aopiList.addAll(Arrays.asList(aopi, aop2, aop3, aop4));
+
+        //第一种方式  Aopi{id=null, name='1_test', age=1}
+        aopiList.forEach(item -> item.setName(item.getName() + "_test"));
+        System.out.println(
+                aopiList.stream().min((o1, o2) -> {
+                    if (Objects.equals(o1.getAge(), o2.getAge()))
+                        return 0;
+                    return o1.getAge() > o2.getAge() ? 1 : -1;
+                }).get().toString()
+        );
+
+        System.out.println("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+
+        //第二种方式  Aopi{id=null, name='1_test', age=1}
+//        System.out.println(
+//                aopiList.stream().peek(item -> item.setName(item.getName() + "_test")).min((o1, o2) -> {
+//                    if (Objects.equals(o1.getAge(), o2.getAge()))
+//                        return 0;
+//                    return o1.getAge() > o2.getAge() ? 1 : -1;
+//                }).get().toString()
+//        );
+
+    }
+
+    @Test
+    public void test02(){
+        Stream<String> stream = Stream.of("hello", "felord.cn");
+        stream.peek((item -> item = "1")).forEach(System.out::println);
+
+//        List<String> collect = stream.peek(item -> item = "1").collect(toList());
+//        collect.parallelStream().forEach(System.out::println);
+
+
+
+        System.out.println("======================");
+
+//        List<String> strs= stream.peek(System.out::println).collect(Collectors.toList());
+//        strs.forEach(System.out::println);
+    }
+
 
 
 }
