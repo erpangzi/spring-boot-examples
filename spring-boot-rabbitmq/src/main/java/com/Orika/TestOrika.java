@@ -1,17 +1,17 @@
 package com.Orika;
 
-import ma.glasnost.orika.BoundMapperFacade;
-import ma.glasnost.orika.MapperFacade;
-import ma.glasnost.orika.MapperFactory;
+import com.Orika.Entity.*;
+import com.student.Student;
+import com.student.Teacher;
+import ma.glasnost.orika.*;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 import org.junit.Assert;
-import org.junit.Assert.*;
 import org.junit.Test;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class TestOrika {
 
@@ -19,8 +19,9 @@ public class TestOrika {
      *      * 获取默认字段工厂 
      *      
      */
-    private static final MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
+    private static MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
 
+    private  PersonCustomMapper customMapper = new PersonCustomMapper();
 
     @Test
     public void givenSrcAndDest_whenMaps_thenCorrect() {
@@ -63,134 +64,117 @@ public class TestOrika {
 
 
 
+
+
+    @Test
+    public void givenSrcAndDestWithDifferentFieldNames_whenMaps_thenCorrect() {
+        mapperFactory.classMap(Personne.class, Person.class)
+                .field("nom", "name").field("surnom", "nickname")
+                .field("age", "age").register();
+        MapperFacade mapper = mapperFactory.getMapperFacade();
+        Personne frenchPerson = new Personne("Claire", "cla", 25);
+        Person englishPerson = mapper.map(frenchPerson, Person.class);
+
+        Assert.assertEquals(englishPerson.getName(), frenchPerson.getNom());
+        Assert.assertEquals(englishPerson.getNickname(), frenchPerson.getSurnom());
+        Assert.assertEquals(englishPerson.getAge(), frenchPerson.getAge());
+    }
+
+    @Test
+    public void PersonToPersonOne(){
+        Person person = new Person("zhangsan", "zs", 18);
+        MapperFactory mapperFactory1 = new DefaultMapperFactory.Builder().build();
+        mapperFactory1.classMap(Person.class, Personne.class)
+                .field("name", "nom")
+                .field("nickname", "surnom")
+                .field( "age","age").register();
+        MapperFacade mapperFacade = mapperFactory1.getMapperFacade();
+        Personne personne = mapperFacade.map(person, Personne.class);
+        System.out.println(personne.toString());
+    }
+
+    @Test
+    public void PersonToPersonOne2(){
+        Person person = new Person("zhangsan", "zs", 18,"test");
+        MapperFactory mapperFactory1 = new DefaultMapperFactory.Builder().build();
+        mapperFactory1.classMap(Person.class, Personne.class)
+                .field("name", "nom")
+                .field("nickname", "surnom")
+                .field( "age","age").register();
+        MapperFacade mapperFacade = mapperFactory1.getMapperFacade();
+        Personne personne = mapperFacade.map(person, Personne.class);
+        System.out.println(personne.toString());
+    }
+
+    @Test
+    public void PersonToPersonOne1(){
+        Person person = new Person("zhangsan", "zs", 18);
+        Student student = new Student("zhangsan", 18);
+        System.out.println(person.getClass());
+        MapperFactory mapperFactory1 = new DefaultMapperFactory.Builder().build();
+        mapperFactory1.classMap(Student.class, Teacher.class)
+                .byDefault().register();
+        MapperFacade mapperFacade = mapperFactory1.getMapperFacade();
+        Teacher teacher = mapperFacade.map(student, Teacher.class);
+        System.out.println(teacher.toString());
+
+    }
+
+    @Test
+    public void givenSrcAndDest_whenCustomMapperWorks_thenCorrect() {
+        mapperFactory.classMap(Personne3.class, Person3.class)
+                .customize(customMapper).register();
+        MapperFacade mapper = mapperFactory.getMapperFacade();
+        String dateTime = "2007-06-26T21:22:39Z";
+        long timestamp = new Long("1182882159000");
+        Personne3 personne3 = new Personne3("Leornardo", timestamp);
+        Person3 person3 = mapper.map(personne3, Person3.class);
+
+        Assert.assertEquals(person3.getDtob(), dateTime);
+    }
+
+    @Test
+    public void givenSrcAndDest_whenCustomMapperWorksBidirectionally_thenCorrect() {
+        mapperFactory.classMap(Personne3.class, Person3.class)
+                .customize(customMapper).register();
+        MapperFacade mapper = mapperFactory.getMapperFacade();
+        String dateTime = "2007-06-26T21:22:39Z";
+        long timestamp = new Long("1182882159000");
+        Person3 person3 = new Person3("Leornardo", dateTime);
+        Personne3 personne3 = mapper.map(person3, Personne3.class);
+
+        Assert.assertEquals(person3.getDtob(), timestamp);
+    }
+
 }
 
-class Source {
-    private String name;
-    private int age;
 
-    public Source(String name, int age) {
-        this.name = name;
-        this.age = age;
+
+
+
+class PersonCustomMapper extends CustomMapper<Personne3, Person3> {
+
+    @Override
+    public void mapAtoB(Personne3 a, Person3 b, MappingContext context) {
+        Date date = new Date(a.getDtob());
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        String isoDate = format.format(date);
+        b.setDtob(isoDate);
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public void mapBtoA(Person3 b, Personne3 a, MappingContext context) {
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        Date date = null;
+        try {
+            date = format.parse(b.getDtob());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long timestamp = date.getTime();
+        a.setDtob(timestamp);
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-    // standard getters and setters
 }
 
 
-class Dest {
-    private String name;
-    private int age;
-
-    public Dest(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-    // standard getters and setters
-}
-
-class Person {
-    private String name;
-    private String nickname;
-    private int age;
-
-    public Person(String name, String nickname, int age) {
-        this.name = name;
-        this.nickname = nickname;
-        this.age = age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-    // standard getters and setters
-}
-
-class Personne {
-    private String nom;
-    private String surnom;
-    private int age;
-
-    public Personne(String nom, String surnom, int age) {
-        this.nom = nom;
-        this.surnom = surnom;
-        this.age = age;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getSurnom() {
-        return surnom;
-    }
-
-    public void setSurnom(String surnom) {
-        this.surnom = surnom;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-// standard getters and setters
-}
 

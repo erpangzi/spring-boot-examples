@@ -95,6 +95,10 @@ public class TestStream {
         stream.distinct().forEach(System.out::println); // know is noknow
         List<String> list = Arrays.asList("know", "is", "know", "noknow", "is", "noknow");
         list.stream().distinct().forEach(System.out::println);
+
+        List<String> list1 = Arrays.asList("1", "2", "3", "4", "5","3", "4", "5");
+        list1 = list1.parallelStream().distinct().collect(Collectors.toList());
+        list1.forEach(System.out::println);
     }
 
     @Test//统计个数

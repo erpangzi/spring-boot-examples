@@ -21,6 +21,11 @@ public class test002 {
         String s = "true";
         String s1 = "12";
 
+        Thread t1 = new Thread(new A());
+        Thread t2 = new Thread(new A());
+        t1.start();
+        t2.start();
+
 
     }
 
@@ -39,5 +44,80 @@ public class test002 {
 
         arrList.forEach(System.out::println);
     }
+
+    @Test
+    public void  testInteger(){
+
+        Integer integer1 = new Integer(10) ;
+        Integer integer2 = new Integer(10) ;
+        Integer integer3 = new Integer(200) ;
+        Integer integer4 = new Integer(200) ;
+        System.out.println(integer1.equals(integer2));
+        System.out.println(integer3.equals(integer4));
+
+
+        Integer t1 = 23;
+        Integer t2 = 23;
+        Integer t3 = 223;
+        Integer t4 = 223;
+        System.out.println(t1 == t2);// true
+        System.out.println(t3 == t4);// false
+
+
+        t1=t3;
+        t3=300;
+        System.out.println(t1);
+        System.out.println(t3);
+
+        Integer i = new Integer(1);
+        Integer j = i;
+        System.out.println(j);
+        i = 2;
+        System.out.println(j);
+        System.out.println(i);
+    }
+
+
+    @Test
+    public void Test() {
+
+        Thread t1 = new Thread(new A());
+        Thread t2 = new Thread(new A());
+        t1.start();
+        t2.start();
+
+    }
+
+    @Test
+    public void Test01() {
+        Long l = 0L ;
+        if(l != 0L){
+            System.out.println(111);
+        }
+
+    }
+
+    static class A implements Runnable {
+        static Integer a = 100;
+        static int val = 0;
+
+        @Override
+        public void run() {
+//            synchronized (a) {
+                while (val < 100) {
+                    val++;
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println(val);
+                }
+//            }
+        }
+    }
+
+
+
 
 }
