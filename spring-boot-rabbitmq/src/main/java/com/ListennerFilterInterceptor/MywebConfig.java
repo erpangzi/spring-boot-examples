@@ -26,6 +26,7 @@ public class MywebConfig implements WebMvcConfigurer {
         FilterRegistrationBean frBean = new FilterRegistrationBean();
         frBean.setFilter(new MyFilter());
         frBean.addUrlPatterns("/LFI");
+        frBean.setOrder(1);
         System.out.println("filter");
         return frBean;
     }

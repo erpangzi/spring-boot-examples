@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/LFI")
+@RestController
 public class UserController {
 
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
