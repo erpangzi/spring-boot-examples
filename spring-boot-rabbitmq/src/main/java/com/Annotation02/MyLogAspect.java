@@ -1,5 +1,7 @@
 package com.Annotation02;
 
+import com.rabbit.model.User;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
@@ -15,17 +17,17 @@ public class MyLogAspect {
     public void logPointCut(){};
 
     @Before("logPointCut()")
-    public void Beforelog(){
-        System.out.println("Before ----");
+    public void Beforelog(JoinPoint joinPoint){
+        System.out.println("Before ----"+joinPoint.getArgs());
     }
     @After("logPointCut()")
-    public void Afterlog(){
-        System.out.println("Before ----");
+    public void Afterlog(JoinPoint joinPoint){
+        System.out.println("After ----");
     }
 
     // 3. 环绕通知
     @Around("logPointCut()")
-    public String logAround(ProceedingJoinPoint joinPoint){
+    public User logAround(ProceedingJoinPoint joinPoint){
         // 获取方法名称
         String methodName = joinPoint.getSignature().getName();
         // 获取入参
@@ -37,14 +39,36 @@ public class MyLogAspect {
         }
         System.out.println("进入[" + methodName + "]方法,参数为:" + sb.toString());
 
-        String proceed = "";
+        User proceed = new User();
         // 继续执行方法
         try {
-            proceed = (String)joinPoint.proceed();
+            proceed = (User)joinPoint.proceed();
+            proceed.setName("1");
+            proceed.setPass("1");
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
         return proceed;
 
     }
+
+
+    /**
+     * 后置返回通知
+     * 这里需要注意的是:
+     * 如果参数中的第一个参数为JoinPoint，则第二个参数为返回值的信息
+     * 如果参数中的第一个参数不为JoinPoint，则第一个参数为returning中对应的参数
+     * returning 限定了只有目标方法返回值与通知方法相应参数类型时才能执行后置返回通知，否则不执行，对于returning对应的通知方法参数为Object类型将匹配任何目标返回值
+     */
+    @AfterReturning(value = "logPointCut()", returning = "keys")
+    public void doAfterReturningAdvice1(JoinPoint joinPoint, Object keys) {
+        System.out.println("第一个后置返回通知的返回值：" + keys);
+        if (keys instanceof User) {
+            User keys1 = (User) keys;
+            keys1.setName("12");
+            keys1.setPass("123");
+        }
+        System.out.println("修改完毕-->返回方法为:" + keys.toString());
+    }
+
 }

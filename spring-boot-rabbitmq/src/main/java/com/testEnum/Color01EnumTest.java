@@ -8,7 +8,8 @@ public class Color01EnumTest {
          */
         String s = Color01.getValue(0).getDesc();
         System.out.println("获取的值为:" + s);
-
+        String name = Color01.BLUE.name();
+        System.out.println(name);
 
         /**
          * 测试枚举的valueof,里面的值可以是自己定义的枚举常量的名称

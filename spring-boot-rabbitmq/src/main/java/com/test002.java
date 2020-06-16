@@ -118,6 +118,15 @@ public class test002 {
     }
 
 
+    @Test
+    public void Test02() {
+        String s = "1";
+        testString(s);
+        System.out.println(s);
+    }
 
+    void testString(String s ){
+        s = s +"被改变";
+    }
 
 }
