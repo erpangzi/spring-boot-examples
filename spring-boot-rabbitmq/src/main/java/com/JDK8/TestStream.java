@@ -2,6 +2,7 @@ package com.JDK8;
 
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.lang3.StringUtils;
+import org.assertj.core.util.Lists;
 import org.junit.Test;
 
 import java.sql.SQLOutput;
@@ -9,7 +10,6 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import com.yonyou.google.common.collect.Lists;
 
 public class TestStream {
 
