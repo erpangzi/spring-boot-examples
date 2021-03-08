@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RabbitMQApplication {
 
 	@Autowired
-	private SpringContextUtil springContextUtil;
+	private com.SpringContextUtil springContextUtil;
 //	@Autowired
 //	private static ApplicationContext applicationContext;
 
