@@ -1,4 +1,4 @@
-package poi;
+package com.example.springbootpoidemo.poi;
 
 /**
  * 例子JavaBean
